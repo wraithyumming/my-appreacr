@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import ListItemCoponent from './ListItemCoponent'
+import ListItemCoponent from './ListItemComponent'
 
 const ListComponent = () => {
     const [input, setInput] = useState('')
-    const [item, setItem] = useState(['First element'])
+    const [items, setItem] = useState(['First element'])
 
     const onClickHandler = () => {
-        const updatedElement = [...item, input]
+        const updatedElement = [...items, input]
         setItem(updatedElement)
         setInput('')
     }
@@ -16,11 +16,24 @@ const ListComponent = () => {
         setInput(value)
     }
 
+    const onEnterHandler = (e) => {
+        if (e.key === 'Enter') {
+            const updatedElement = [...items, input]
+            setItem(updatedElement)
+            setInput('')
+        }
+    }
+
     return (
         <>
-            <input onChange={onChangeHandler} value="{input}" />
+            <input
+                onKeyDown={onEnterHandler}
+                onChange={onChangeHandler}
+                value={input}
+            />
+            <h2>{items.length}</h2>
             <ul>
-                {item.map((element, index) => (
+                {items.map((element, index) => (
                     <ListItemCoponent element={element} index={index} />
                 ))}
             </ul>
