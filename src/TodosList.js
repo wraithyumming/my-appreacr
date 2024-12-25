@@ -5,7 +5,7 @@ const TodosList = (props) => {
     return (
         <>
             <div>{props.renderOneTodo}</div>
-            <GrandChildComponent newPropTodo={props.renderOneTodo} />
+            {/* <GrandChildComponent newPropTodo={props.renderOneTodo} /> */}
         </>
     )
 }
