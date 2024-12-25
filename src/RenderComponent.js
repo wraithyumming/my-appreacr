@@ -1,5 +1,5 @@
 import React from 'react'
-import TodosList from './TodoList'
+import TodosList from './TodosList'
 
 const RenderComponent = () => {
     const toDos = [
@@ -9,8 +9,8 @@ const RenderComponent = () => {
         { id: 4, todo: 'fourthTodo' },
     ]
     return <div>
-       {toDos.map((todo) => {
-        return <TodosList key={index} renderOneTodo={todo.todo} />
+       {toDos.map((todo, index) => {
+        return <TodosList key={index} renderOneTodo={todo.todo} id={todo.id}/>
        })}
     </div>
 }
