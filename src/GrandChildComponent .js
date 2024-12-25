@@ -1,8 +1,8 @@
 import React from 'react'
 
 const GrandChildComponent = (props) => {
-    console.log(props)
+  
     return <div>{props.myFunctionName()}</div>
 }
 
-export default GrandChildComponent
+export default GrandChildComponent  

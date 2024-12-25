@@ -10,9 +10,9 @@ const ListComponent = () => {
     ]
     const [input, setInput] = useState('')
     const [items, setItem] = useState(initialValues)
- 
+
     const onClickHandler = () => {
-        const updatedElement = [...items, input]
+        const updatedElement = [...items, { id: 4, name: input }]
         setItem(updatedElement)
         setInput('')
     }
@@ -24,14 +24,15 @@ const ListComponent = () => {
 
     const onEnterHandler = (e) => {
         if (e.key === 'Enter') {
-            const updatedElement = [...items, input]
+            const updatedElement = [...items, { id: 5, name: input }]
             setItem(updatedElement)
             setInput('')
         }
     }
 
-    const handleDelete = () => {
-        console.log('delete button clicked')
+    const handleDelete = (id) => {
+        const filteredItems = items.filter((item) => item.id !== id);
+        setItem(filteredItems);
     }
 
     return (
@@ -44,11 +45,15 @@ const ListComponent = () => {
             <h2>{items.length}</h2>
             <ul>
                 {items.map((element, index) => (
-                    <ListItemComponent id={element.id} element={element.name}>
+                    <ListItemComponent
+                        key={element.id}
+                        id={element.id}
+                        name={element.name}
+                    >
                         {
                             <ButtonComponent
                                 text={'delete'}
-                                onClick={handleDelete}
+                                onClick={() => handleDelete(element.id)}
                                 type={'button'}
                             />
                         }

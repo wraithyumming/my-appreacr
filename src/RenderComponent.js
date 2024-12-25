@@ -1,6 +1,6 @@
-import React from 'react'
-import TodosList from './TodosList'
-import GrandChildComponent from './GrandChildComponent'
+import React from 'react';
+import TodosList from './TodosList';
+import GrandChildComponent from './GrandChildComponent';
 
 const RenderComponent = () => {
     const toDos = [
@@ -8,31 +8,32 @@ const RenderComponent = () => {
         { id: '2', todo: 'secondTodo' },
         { id: '3', todo: 'thirdTodo' },
         { id: '4', todo: 'fourthTodo' },
-    ]
+    ];
+
     const myName = {
         name: 'Kostya',
-    }
+    };
 
     const myNameinArray = ['Kostya'];
 
-    const myFunctionName = () => {
-        return 'Kostya';
-    }
+    const myFunctionName = () => 'Kostya';
 
     return (
         <div>
-            {/* {toDos.map((todo, index) => {
-                return (
-                    <TodosList
-                        key={index}
-                        renderOneTodo={todo.todo}
-                        id={todo.id}
-                    />
-                )
-            })} */}
-            <GrandChildComponent myName={myName} myNameinArray={myNameinArray} myFunctionName={myFunctionName}/>
+            {toDos.map((todo) => (
+                <TodosList
+                    key={todo.id} // Используем уникальный id как ключ
+                    renderOneTodo={todo.todo}
+                    id={todo.id}
+                />
+            ))}
+            <GrandChildComponent
+                myName={myName}
+                myNameinArray={myNameinArray}
+                myFunctionName={myFunctionName}
+            />
         </div>
-    )
-}
+    );
+};
 
-export default RenderComponent
+export default RenderComponent;
