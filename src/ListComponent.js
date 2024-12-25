@@ -1,10 +1,16 @@
 import { useState } from 'react'
-import ListItemCoponent from './ListItemComponent'
+import ListItemComponent from './ListItemComponent'
+import ButtonComponent from './ButtonComponent'
 
 const ListComponent = () => {
+    const initialValues = [
+        { id: 1, name: 'first' },
+        { id: 2, name: 'second' },
+        { id: 3, name: 'third' },
+    ]
     const [input, setInput] = useState('')
-    const [items, setItem] = useState(['First element'])
-
+    const [items, setItem] = useState(initialValues)
+ 
     const onClickHandler = () => {
         const updatedElement = [...items, input]
         setItem(updatedElement)
@@ -24,6 +30,10 @@ const ListComponent = () => {
         }
     }
 
+    const handleDelete = () => {
+        console.log('delete button clicked')
+    }
+
     return (
         <>
             <input
@@ -34,10 +44,20 @@ const ListComponent = () => {
             <h2>{items.length}</h2>
             <ul>
                 {items.map((element, index) => (
-                    <ListItemCoponent element={element} index={index} />
+                    <ListItemComponent id={element.id} element={element.name}>
+                        {
+                            <ButtonComponent
+                                text={'delete'}
+                                onClick={handleDelete}
+                                type={'button'}
+                            />
+                        }
+                    </ListItemComponent>
                 ))}
             </ul>
-            <button onClick={onClickHandler}>Add new element</button>
+            <button onClick={() => onClickHandler(input)}>
+                Add new element
+            </button>
         </>
     )
 }
